@@ -17,6 +17,7 @@ class MakersBnB < Sinatra::Base
 
   get '/spaces' do
     @name = session[:username]
+    @listings = ['House 1', 'House 2', 'House 3']
     erb :spaces
   end
 
