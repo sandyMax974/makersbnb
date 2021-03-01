@@ -5,6 +5,7 @@ class MakersBnB < Sinatra::Base
   enable :sessions
 
   get '/' do
+    session[:listings] = ['House 1', 'House 2', 'House 3']
     erb :index
   end
 
@@ -17,8 +18,18 @@ class MakersBnB < Sinatra::Base
 
   get '/spaces' do
     @name = session[:username]
-    @listings = ['House 1', 'House 2', 'House 3']
+    @listings = session[:listings]
     erb :spaces
+  end
+
+  get '/spaces/new' do
+    erb :new
+  end
+
+  post '/spaces/new' do
+    session[:listings] << params[:House_number]
+    #store listing information
+    redirect '/spaces'
   end
 
   run! if app_file == $0
