@@ -8,6 +8,10 @@ class MakersBnB < Sinatra::Base
     session[:listings] = ['House 1', 'House 2', 'House 3']
     erb :index
   end
+  
+  get '/confirmation' do
+    erb :confirmation
+  end
 
   post '/signup' do
     p params

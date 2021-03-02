@@ -30,3 +30,13 @@ Nice-to-haves
 - Basic payment implementation though Stripe.
 
 # User Stories
+
+# Plans
+
+Book Spaces
+
+'/' -> Available Spaces -> "book" button -> confirmation message
+
+Test:
+
+expect('/confirmation').to have_content "You have booked this space!"
