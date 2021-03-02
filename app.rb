@@ -1,11 +1,13 @@
 require 'sinatra'
+require './lib/listing'
+require 'pg'
 
 class MakersBnB < Sinatra::Base
 
   enable :sessions
 
   get '/' do
-    session[:listings] = ['House 1', 'House 2', 'House 3']
+    # session[:listings] = ['House 1', 'House 2', 'House 3']
     erb :index
   end
 
@@ -15,17 +17,20 @@ class MakersBnB < Sinatra::Base
     session[:username] = params[:username]
     redirect '/spaces'
   end
-  
+
   get '/spaces' do
     @name = session[:username]
-    @listings = session[:listings]
+    connection = PG.connect :dbname => "makersbnb_#{ENV['RACK_ENV']}"
+    @result = connection.exec("SELECT * FROM listings;")
+    @listings = result.map { |listing| listing['title']}
+    # @listings = session[:listings]
     erb :spaces
   end
 
   get '/spaces/new' do
     erb :new
   end
-  
+
   post '/spaces/new' do
     p params
     # session[:listings] << params[:House_number]
@@ -38,7 +43,7 @@ class MakersBnB < Sinatra::Base
   get '/confirmation' do
     erb :confirmation
   end
-  
+
   run! if app_file == $0
 end
 
