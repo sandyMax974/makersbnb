@@ -1,11 +1,11 @@
 require 'sinatra'
+require_relative './lib/user'
 
 class MakersBnB < Sinatra::Base
 
   enable :sessions
 
   get '/' do
-    session[:listings] = ['space 1', 'space 2', 'space 3']
     erb :index
   end
   
@@ -15,15 +15,17 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/signup' do
-    p params
-    # store user information
-    session[:username] = params[:username]
+    # p params
+    @user = User.create( params[:username], params[:email], params[:password], params[:confirm_password])
+    # session[:username] = params[:username]
     redirect '/spaces'
   end
 
   get '/spaces' do
-    @name = session[:username]
-    @listings = session[:listings]
+    @user = User.current.username
+    @listings = ['space 1', 'space 2', 'space 3']
+    p @listings
+    p @name
     erb :spaces
   end
 
