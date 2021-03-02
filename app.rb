@@ -6,7 +6,7 @@ class MakersBnB < Sinatra::Base
   enable :sessions
 
   get '/' do
-    @listings = ['space 1', 'space 2', 'space 3']
+    session[:listings] = ['space 1', 'space 2', 'space 3']
     erb :index
   end
 
@@ -23,8 +23,8 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces' do
-    @user = User.current.username
-    @listings = ['space 1', 'space 2', 'space 3']
+    @username = User.current.name
+    @listings = session[:listings]
     erb :spaces
   end
 
