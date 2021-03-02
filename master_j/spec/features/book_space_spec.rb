@@ -1,6 +1,5 @@
-
 feature 'book a space' do
-  scenario 'receives confirmation message' do
+  scenario 'user books available space, receives confirmation message' do
     visit '/'
     click_button('book space 1!')
 
@@ -12,8 +11,7 @@ feature 'book a space' do
 
     expect(page).to have_content('You have booked space 1!')
   end
-
-  scenario 'space removed from listings view' do
+  scenario 'booked space removed from listings view' do
     visit '/'
     click_button('book space 1!')
     click_link('View more spaces // go back to home page')
