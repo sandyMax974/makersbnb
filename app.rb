@@ -6,9 +6,10 @@ class MakersBnB < Sinatra::Base
   enable :sessions
 
   get '/' do
+    @listings = ['space 1', 'space 2', 'space 3']
     erb :index
   end
-  
+
   get '/confirmation' do
     p params
     erb :confirmation
@@ -24,8 +25,6 @@ class MakersBnB < Sinatra::Base
   get '/spaces' do
     @user = User.current.username
     @listings = ['space 1', 'space 2', 'space 3']
-    p @listings
-    p @name
     erb :spaces
   end
 
@@ -47,7 +46,7 @@ end
 
 1 - turn space into variables
 
-2 - new controller method delete 
+2 - new controller method delete
 
 
 
