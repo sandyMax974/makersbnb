@@ -9,17 +9,13 @@ class MakersBnB < Sinatra::Base
     erb :index
   end
 
-  get '/confirmation' do
-    erb :confirmation
-  end
-
   post '/signup' do
     p params
     # store user information
     session[:username] = params[:username]
     redirect '/spaces'
   end
-
+  
   get '/spaces' do
     @name = session[:username]
     @listings = session[:listings]
@@ -29,15 +25,20 @@ class MakersBnB < Sinatra::Base
   get '/spaces/new' do
     erb :new
   end
-
+  
   post '/spaces/new' do
+    p params
     # session[:listings] << params[:House_number]
-    @name = session[:username]
-    # Listing.create()
+    p @name = session[:username]
+    Listing.create(params[:title], params[:description], @name )
     # store listing information
     redirect '/spaces'
   end
 
+  get '/confirmation' do
+    erb :confirmation
+  end
+  
   run! if app_file == $0
 end
 
