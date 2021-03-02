@@ -8,7 +8,7 @@ class MakersBnB < Sinatra::Base
     session[:listings] = ['House 1', 'House 2', 'House 3']
     erb :index
   end
-  
+
   get '/confirmation' do
     erb :confirmation
   end
@@ -31,8 +31,10 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/spaces/new' do
-    session[:listings] << params[:House_number]
-    #store listing information
+    # session[:listings] << params[:House_number]
+    @name = session[:username]
+    # Listing.create()
+    # store listing information
     redirect '/spaces'
   end
 
@@ -44,7 +46,7 @@ end
 
 1 - turn space into variables
 
-2 - new controller method delete 
+2 - new controller method delete
 
 
 
