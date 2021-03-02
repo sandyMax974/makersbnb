@@ -1,0 +1,11 @@
+<h1>MakersBnB<h1>
+
+<h2>Hello <%= @name %><h2>
+
+<p>Listings</p>
+
+<ul>
+  <% @listings.each do |listing| %>
+  <li> <%= listing %> </li>
+  <% end %>
+</ul>
