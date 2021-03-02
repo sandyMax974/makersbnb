@@ -11,7 +11,6 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/confirmation' do
-    p params
     erb :confirmation
   end
 

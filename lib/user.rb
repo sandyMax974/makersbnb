@@ -1,20 +1,29 @@
+require 'pg'
+
 class User
 
   attr_reader :name, :email, :password
 
-  def initialize(name, email, password1, password2)
+  def initialize(name, email, password, confirm_password)
     @name = name
     @email = email
-    raise("Passwords should match") if password1 != password2
-    @password = password1
+    raise("Passwords should match") if password != confirm_password
+    @password = password
   end
 
-  def self.create(name, email, password1, password2)
-    @current = User.new(name, email, password1, password2)
+  def self.create(name, email, password, confirm_password)
+    query("INSERT INTO users (username, email, password) VALUES('#{name}', '#{email}', '#{password}');")
+    @current = User.new(name, email, password, confirm_password)
   end
 
   def self.current
     @current
+  end
+
+  def self.query(query_string)
+    ENV['ENVIRONMENT'] == 'test' ? @dbname = 'makersbnb_test' : @dbname = 'makersbnb_development'
+    results = PG.connect(dbname: @dbname).exec(query_string)
+    results.map { |result| result.transform_keys(&:to_sym) }
   end
 
 end
