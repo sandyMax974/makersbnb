@@ -22,11 +22,8 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces' do
-    connection = PG.connect :dbname => "makersbnb_#{ENV['RACK_ENV']}"
-    @result = connection.exec("SELECT * FROM listings;")
-    @listings = @result.map { |listing| listing['title']}
     @name = User.current.name
-
+    @listings = Listing.all
     erb :spaces
   end
 
@@ -45,5 +42,3 @@ class MakersBnB < Sinatra::Base
 
   run! if app_file == $0
 end
-
-
