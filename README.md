@@ -40,3 +40,20 @@ Book Spaces
 Test:
 
 expect('/confirmation').to have_content "You have booked this space!"
+
+
+Flash if password || email are invalid:
+
+controller:
+
+if email field has []@[].[]
+  create user
+else
+  flash[:notice] = "You must submit a valid email"
+end
+
+if password == confirm_password
+  create user
+else
+  flash[:notice] = "Passwords must match"
+end
