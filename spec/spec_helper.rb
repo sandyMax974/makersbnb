@@ -4,8 +4,11 @@ require './app'
 require 'pg'
 require 'rspec'
 require 'capybara/rspec'
+require 'setup_test_database'
 
 Capybara.app = MakersBnB
+
+ENV['ENVIRONMENT'] = 'test'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -16,4 +19,9 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
   config.shared_context_metadata_behavior = :apply_to_host_groups
+  
+  config.before(:each) do
+    setup_test_database
+  end
+
 end
