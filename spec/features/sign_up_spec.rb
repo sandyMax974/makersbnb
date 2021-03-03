@@ -19,7 +19,16 @@ feature 'sign up for makers bnb' do
     expect(page).to have_content("You must submit a valid email")
   end
 
-  # scenario 'password must match confirm_password' do
-  #
-  # end
+  scenario 'password must match confirm_password' do
+    visit '/'
+    fill_in('username', with: 'Pete')
+    fill_in('email', with: 'Pete@example.com')
+    fill_in('password', with: '1234')
+    fill_in('confirm_password', with: '1')
+    click_button 'Submit'
+
+    expect(current_path).to eq '/'
+    expect(page).to have_content("Passwords must match")
+
+  end
 end

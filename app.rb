@@ -2,10 +2,10 @@ require 'sinatra'
 require 'uri'
 require 'sinatra/flash'
 require_relative './lib/user'
-
 class MakersBnB < Sinatra::Base
 
   enable :sessions
+  register Sinatra::Flash
 
   get '/' do
     session[:listings] = ['space 1', 'space 2', 'space 3']
@@ -17,13 +17,17 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/signup' do
-    if params[:email] =~ URI::MailTo::EMAIL_REGEXP
+    if User.validate_email?(params[:email]) && User.validate_password?(params[:password], params[:confirm_password])
       @user = User.create( params[:username], params[:email], params[:password], params[:confirm_password])
+      redirect '/spaces'
     else
-      flash[:notice] = "You must submit a valid email"
+      if User.validate_password?(params[:password], params[:confirm_password])
+        flash[:notice] = "You must submit a valid email"
+      else
+        flash[:notice] = "Passwords must match"
+      end
+      redirect '/'
     end
-
-    redirect '/'
   end
 
   get '/spaces' do
