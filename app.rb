@@ -22,7 +22,7 @@ class MakersBnB < Sinatra::Base
     @name = session[:username]
     connection = PG.connect :dbname => "makersbnb_#{ENV['RACK_ENV']}"
     @result = connection.exec("SELECT * FROM listings;")
-    @listings = result.map { |listing| listing['title']}
+    @listings = @result.map { |listing| listing['title']}
     # @listings = session[:listings]
     erb :spaces
   end
@@ -35,7 +35,7 @@ class MakersBnB < Sinatra::Base
     p params
     # session[:listings] << params[:House_number]
     p @name = session[:username]
-    Listing.create(params[:title], params[:description], @name )
+    Listing.create(params[:title], params[:description], 1 )
     # store listing information
     redirect '/spaces'
   end

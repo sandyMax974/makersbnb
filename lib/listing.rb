@@ -1,18 +1,18 @@
 class Listing
 
-  def self.create(title, description, user)
+  def self.create(title, description, creator_id)
     connection = PG.connect :dbname => "makersbnb_#{ENV['RACK_ENV']}"
-    insert = connection.exec("INSERT INTO listings (title, description, user) VALUES('#{title}', '#{description}','#{user}') RETURNING id, title, description, user")
-    Listing.new(title, description, user)
+    insert = connection.exec("INSERT INTO listings (title, description, creator_id) VALUES('#{title}', '#{description}','#{creator_id}') RETURNING id, title, description, creator_id")
+    Listing.new(title, description, creator_id)
   end
 
-  attr_reader :title, :description, :user
+  attr_reader :title, :description, :creator_id
 
-  def initialize(id = 'id', title, description, user)
+  def initialize(id = 'id', title, description, creator_id)
     @id = id
     @title = title
     @description = description
-    @user = user
+    @creator_id = creator_id
   end
 
 end
