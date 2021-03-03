@@ -1,3 +1,5 @@
+ENV['RACK_ENV'] = 'test'
+
 require './app'
 require 'pg'
 require 'rspec'
