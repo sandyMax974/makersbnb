@@ -22,4 +22,16 @@ describe Listing do
       expect(listings[1].title).to eq 'Holiday house'
     end
   end
+
+  describe '.book' do
+    it 'should remove listing from all when booked' do
+      listing = Listing.create('Sea Cottage', 'Lovely holiday vacation', 23)
+      Listing.create('Ski lodge in South of France', 'Perfect for families', 2)
+      Listing.book(listing.id, 1)
+      p Listing.all
+      p listing.renter_id
+      expect(Listing.all[0].renter_id).to eq 1
+    end
+  end
+
 end

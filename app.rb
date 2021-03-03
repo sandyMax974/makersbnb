@@ -12,10 +12,6 @@ class MakersBnB < Sinatra::Base
     erb :index
   end
 
-  get '/confirmation' do
-    erb :confirmation
-  end
-
   post '/signup' do
     @user = User.create( params[:username], params[:email], params[:password], params[:confirm_password])
     redirect '/spaces'
@@ -36,7 +32,9 @@ class MakersBnB < Sinatra::Base
     redirect '/spaces'
   end
 
-  get '/confirmation' do
+  post '/confirmation/:id' do
+    Listing.book(params[:id], User.current.id)
+    # @title = params[:title]
     erb :confirmation
   end
 
