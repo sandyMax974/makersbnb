@@ -32,7 +32,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/spaces/new' do
-    Listing.create(params[:title], params[:description], 1 )
+    Listing.create(params[:title], params[:description], 1)
     redirect '/spaces'
   end
 
