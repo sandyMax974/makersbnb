@@ -2,7 +2,8 @@
 feature 'book a space' do
   scenario 'receives confirmation message' do
     visit '/'
-    click_button('book space 1!')
+    visit '/spaces'
+    click_button('book space 1')
 
     expect(current_path).to eq('/confirmation')
 
@@ -15,7 +16,8 @@ feature 'book a space' do
 
   scenario 'space removed from listings view' do
     visit '/'
-    click_button('book space 1!')
+    visit '/spaces'
+    click_button('book space 1')
     click_link('View more spaces // go back to home page')
 
     expect(page).not_to have_content('space 1')

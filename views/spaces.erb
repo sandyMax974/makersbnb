@@ -6,6 +6,10 @@
 
 <ul>
   <% @listings.each do |listing| %>
-  <li> <%= listing %> </li>
+  <li><%= listing %> <form action="/confirmation" method="get">
+    <input type="submit" value="book <%= listing %>">
+  </form> </li>
   <% end %>
 </ul>
+
+

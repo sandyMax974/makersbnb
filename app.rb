@@ -5,11 +5,12 @@ class MakersBnB < Sinatra::Base
   enable :sessions
 
   get '/' do
-    session[:listings] = ['House 1', 'House 2', 'House 3']
+    session[:listings] = ['space 1', 'space 2', 'space 3']
     erb :index
   end
   
   get '/confirmation' do
+    p params
     erb :confirmation
   end
 
