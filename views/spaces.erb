@@ -6,9 +6,13 @@
 
 <ul>
   <% @listings.each do |listing| %>
-  <li><%= listing %> <form action="/confirmation" method="get">
-    <input type="submit" value="book <%= listing %>">
-  </form> </li>
+  <li> <%= listing.title %>
+    <form action="/confirmation" method="get">
+      <input type="submit" value="book <%= listing.title %>">
+    </form>
+    <%= listing.description %>
+    <%= listing.creator_id %>
+  </li>
   <% end %>
 </ul>
 
