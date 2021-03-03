@@ -2,9 +2,10 @@ require 'pg'
 
 class User
 
-  attr_reader :name, :email, :password
+  attr_reader :user_id, :name, :email, :password
 
-  def initialize(name, email, password, confirm_password)
+  def initialize(user_id, name, email, password, confirm_password)
+    @user_id = user_id
     @name = name
     @email = email
     raise("Passwords should match") if password != confirm_password
@@ -12,8 +13,8 @@ class User
   end
 
   def self.create(name, email, password, confirm_password)
-    query("INSERT INTO users (username, email, password) VALUES('#{name}', '#{email}', '#{password}');")
-    @current = User.new(name, email, password, confirm_password)
+    user_id = query("INSERT INTO users (username, email, password) VALUES('#{name}', '#{email}', '#{password}') RETURNING id;")
+    @current = User.new(user_id, name, email, password, confirm_password)
   end
 
   def self.current
