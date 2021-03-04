@@ -32,4 +32,31 @@ describe User do
       expect(User.current.password).to eq '1234'
     end
   end
+
+  describe '.authenticate' do
+    it 'returns a given user for a correct password and email, if one exist' do
+      user = User.create('Sandy', 'sandy@gmail.com', '1234', '1234')
+      authenticated_user = User.authenticate('sandy@gmail.com', '1234')
+
+      expect(authenticated_user.user_id).to eq user.user_id
+    end
+    it 'returns nil if an incorrect email is suppplied' do
+      user = User.create('Sandy', 'sandy@gmail.com', '1234', '1234')
+      expect(User.authenticate('incorrect@gmail.com', '1234')).to be_nil
+    end
+    #   it 'returns nil if an incorrect password is suppplied' do
+    #     user = User.create('Sandy', 'sandy@gmail.com', '1234', '1234')
+    #     expect(User.authenticate('sandy@gmail.com', 'wrong')).to be_nil
+    #   end
+    end
+
+  describe '.logout' do
+    it 'logs out the current user' do
+      user = User.create('Sandy', 'sandy@gmail.com', '1234', '1234')
+      User.logout
+
+      expect(User.current).to be nil
+    end
+  end
+
 end

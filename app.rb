@@ -9,11 +9,20 @@ class MakersBnB < Sinatra::Base
   enable :sessions
 
   get '/' do
-    erb :index
+    erb :user
   end
 
-  get '/confirmation' do
-    erb :confirmation
+  get '/login' do
+    erb :login
+  end
+
+  post '/login' do
+    @user = User.authenticate(params[:email], params[:password])
+    if User.current == nil
+      redirect '/login'
+    else
+      redirect '/spaces'
+    end
   end
 
   post '/signup' do
@@ -22,7 +31,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces' do
-    @name = User.current.name
+    @name = User.current.name if User.current != nil# this can't retrive a loged in user at the moment
     @listings = Listing.all
     erb :spaces
   end
@@ -37,9 +46,15 @@ class MakersBnB < Sinatra::Base
     redirect '/spaces'
   end
 
+
   post '/confirmation/:id' do
     @title = Listing.book(params[:id], User.current.user_id)
     erb :confirmation
+    end
+
+  post '/session/destroy' do
+    User.logout
+    redirect '/spaces'
   end
 
   run! if app_file == $PROGRAM_NAME

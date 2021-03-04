@@ -2,6 +2,18 @@
 
 <h2>Hello <%= @name %><h2>
 
+  <form action="/spaces/new" method="get">
+    <input type="submit" value="Add listing">
+  </form>
+
+  <form class="" action="/login" method="get">
+    <input type="submit" value="Log in">
+  </form>
+
+  <form class="" action="/session/destroy" method="post">
+    <input type="submit" value="Signout">
+  </form>
+
 <p>Listings</p>
 
 <ul>
@@ -15,7 +27,3 @@
   </li>
   <% end %>
 </ul>
-
-<form action="/spaces/new" method="get">
-  <input type="submit" value="Add a new listing">
-</form>

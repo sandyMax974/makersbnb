@@ -2,6 +2,7 @@
 
 def sign_up
   visit '/'
+  expect(page).to have_link('Login', href: '/login')
   fill_in('username', with: 'Pete')
   fill_in('email', with: 'pete@pete.com')
   fill_in('password', with: '1234')
