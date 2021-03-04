@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ENV['RACK_ENV'] = 'test'
 
 require './app'
@@ -5,10 +7,18 @@ require 'pg'
 require 'rspec'
 require 'capybara/rspec'
 require 'setup_test_database'
+require 'simplecov'
+require 'simplecov-console'
 
 Capybara.app = MakersBnB
 
 ENV['ENVIRONMENT'] = 'test'
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+                                                                 SimpleCov::Formatter::Console
+
+                                                               ])
+SimpleCov.start
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
@@ -19,9 +29,8 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
   config.shared_context_metadata_behavior = :apply_to_host_groups
-  
+
   config.before(:each) do
     setup_test_database
   end
-
 end

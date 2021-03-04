@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require 'pg'
 require 'bcrypt'
 
 class User
-
   attr_reader :user_id, :name, :email, :password
 
   def initialize(user_id, name, email, password, confirm_password)
     @user_id = user_id
     @name = name
     @email = email
-    raise("Passwords should match") if password != confirm_password
+    raise('Passwords should match') if password != confirm_password
+
     @password = password
   end
 
@@ -19,14 +21,13 @@ class User
     @current = User.new(user_id, name, email, password, confirm_password)
   end
 
-  def self.current
-    @current
+  class << self
+    attr_reader :current
   end
 
   def self.query(query_string)
-    ENV['ENVIRONMENT'] == 'test' ? @dbname = 'makersbnb_test' : @dbname = 'makersbnb_development'
+    @dbname = ENV['ENVIRONMENT'] == 'test' ? 'makersbnb_test' : 'makersbnb_development'
     results = PG.connect(dbname: @dbname).exec(query_string)
     results.map { |result| result.transform_keys(&:to_sym) }
   end
-
 end

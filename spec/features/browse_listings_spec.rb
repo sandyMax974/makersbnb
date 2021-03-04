@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 feature 'Browse listings' do
   scenario 'User can see a list of listings' do
     Listing.create('Space 1', 'test', 1)
