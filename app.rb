@@ -14,6 +14,7 @@ class MakersBnB < Sinatra::Base
 
   get '/login' do
     "Login form"
+    erb :login
   end
 
   get '/signup/new' do
