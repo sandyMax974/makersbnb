@@ -46,6 +46,9 @@ class MakersBnB < Sinatra::Base
     redirect '/spaces'
   end
 
+  get '/confirmation' do
+    erb :confirmation
+  end
 
   post '/confirmation/:id' do
     @title = Listing.book(params[:id], User.current.user_id)
