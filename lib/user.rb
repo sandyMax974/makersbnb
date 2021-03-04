@@ -28,6 +28,10 @@ class User
     @current = User.new(result[0][:id], result[0][:username], result[0][:email], result[0][:password], result[0][:password])
   end
 
+  def self.logged?
+    @current != nil
+  end
+
   class << self
     attr_reader :current
   end

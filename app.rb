@@ -18,11 +18,8 @@ class MakersBnB < Sinatra::Base
 
   post '/login' do
     @user = User.authenticate(params[:email], params[:password])
-    if User.current == nil
-      redirect '/login'
-    else
-      redirect '/spaces'
-    end
+    redirect '/spaces' if User.logged?
+    redirect '/login'
   end
 
   post '/signup' do
@@ -31,7 +28,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces' do
-    @name = User.current.name if User.current != nil# this can't retrive a loged in user at the moment
+    @name = User.current.name if User.logged? # this can't retrive a loged in user at the moment
     @listings = Listing.all
     erb :spaces
   end
