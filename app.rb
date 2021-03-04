@@ -1,11 +1,11 @@
+# frozen_string_literal: true
+
 require 'sinatra'
 require './lib/listing'
 require 'pg'
 require_relative './lib/user'
 
-
 class MakersBnB < Sinatra::Base
-
   enable :sessions
 
   get '/' do
@@ -17,7 +17,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/signup' do
-    @user = User.create( params[:username], params[:email], params[:password], params[:confirm_password])
+    @user = User.create(params[:username], params[:email], params[:password], params[:confirm_password])
     redirect '/spaces'
   end
 
@@ -42,5 +42,5 @@ class MakersBnB < Sinatra::Base
     erb :confirmation
   end
 
-  run! if app_file == $0
+  run! if app_file == $PROGRAM_NAME
 end

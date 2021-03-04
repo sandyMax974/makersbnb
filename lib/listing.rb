@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Listing
   attr_reader :id, :title, :description, :creator_id
 
@@ -20,10 +22,11 @@ class Listing
 
   def self.reserved
     results = query("SELECT * FROM listings WHERE renter_id IS NOT NULL;") # this is a hash
+    results.map { |listing| Listing.new(listing) } # this is an array w/ symbols
   end
 
   def self.query(sql)
-    connection = PG.connect :dbname => "makersbnb_#{ENV['RACK_ENV']}"
+    connection = PG.connect dbname: "makersbnb_#{ENV['RACK_ENV']}"
     results = connection.exec(sql)
     results.map { |result| result.transform_keys(&:to_sym) }
   end

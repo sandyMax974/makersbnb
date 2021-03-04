@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require 'listing'
 
 describe Listing do
   describe '.create' do
     it 'should create a new listing with an id, title, description and creator_id' do
-
       listing = Listing.create('Sea Cottage', 'Lovely holiday vacation', 23)
 
       expect(listing.first.id).to_not be nil
