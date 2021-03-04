@@ -16,7 +16,12 @@ class User
   def self.create(name, email, password, confirm_password)
     encrypted_password = BCrypt::Password.create(password)
     user_id = query("INSERT INTO users (username, email, password) VALUES('#{name}', '#{email}', '#{encrypted_password}') RETURNING id;")
-    @current = User.new(user_id, name, email, password, confirm_password)
+    @current = User.new(user_id[0][:id], name, email, password, confirm_password)
+  end
+
+  def self.authenticate(email, password)
+    result = query("SELECT * FROM users WHERE email = '#{email}'")
+    @current = User.new(result[0][:id], result[0][:username], result[0][:email], result[0][:password], result[0][:password])
   end
 
   def self.current
