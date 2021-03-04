@@ -12,9 +12,9 @@ class MakersBnB < Sinatra::Base
     erb :index
   end
 
-  get '/confirmation' do
-    erb :confirmation
-  end
+  # get '/confirmation' do
+  #   erb :confirmation
+  # end
 
   post '/signup' do
     @user = User.create( params[:username], params[:email], params[:password], params[:confirm_password])
