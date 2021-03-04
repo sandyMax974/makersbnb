@@ -1,4 +1,5 @@
 require 'pg'
+require 'bcrypt'
 
 class User
 
@@ -13,7 +14,8 @@ class User
   end
 
   def self.create(name, email, password, confirm_password)
-    user_id = query("INSERT INTO users (username, email, password) VALUES('#{name}', '#{email}', '#{password}') RETURNING id;")
+    encrypted_password = BCrypt::Password.create(password)
+    user_id = query("INSERT INTO users (username, email, password) VALUES('#{name}', '#{email}', '#{encrypted_password}') RETURNING id;")
     @current = User.new(user_id, name, email, password, confirm_password)
   end
 
