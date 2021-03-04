@@ -18,7 +18,11 @@ class MakersBnB < Sinatra::Base
 
   post '/login' do
     @user = User.authenticate(params[:email], params[:password])
-    redirect '/spaces'
+    if User.current == nil
+      redirect '/login'
+    else
+      redirect '/spaces'
+    end
   end
 
   post '/signup' do
