@@ -27,4 +27,14 @@ describe Listing do
       expect(listings[1].description).to eq 'Amazing location'
     end
   end
+
+  describe '.book' do
+    it 'should add listing to reserved when booked' do
+      listing = Listing.create('Sea Cottage', 'Lovely holiday vacation', 23)
+      Listing.book(listing[0].id, 1)
+      expect(Listing.reserved[0][:renter_id]).to eq '1'
+      expect(Listing.all).to eq []
+    end
+  end
+
 end

@@ -17,7 +17,7 @@ class User
 
   def self.create(name, email, password, confirm_password)
     encrypted_password = BCrypt::Password.create(password)
-    user_id = query("INSERT INTO users (username, email, password) VALUES('#{name}', '#{email}', '#{encrypted_password}') RETURNING id;")
+    user_id = query("INSERT INTO users (username, email, password) VALUES('#{name}', '#{email}', '#{encrypted_password}') RETURNING id;").first[:id]
     @current = User.new(user_id, name, email, password, confirm_password)
   end
 
