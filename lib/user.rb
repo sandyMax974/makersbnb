@@ -28,6 +28,10 @@ class User
     @current
   end
 
+  def self.logout
+    @current = nil
+  end
+
   def self.query(query_string)
     ENV['ENVIRONMENT'] == 'test' ? @dbname = 'makersbnb_test' : @dbname = 'makersbnb_development'
     results = PG.connect(dbname: @dbname).exec(query_string)

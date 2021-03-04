@@ -9,24 +9,16 @@ class MakersBnB < Sinatra::Base
   enable :sessions
 
   get '/' do
-    "Log in / Sign up (directs to /signup/new)"
-  end
-
-  get '/login' do
-    "Login form"
-    erb :login
-  end
-
-  get '/signup/new' do
     erb :user
   end
 
+  get '/login' do
+    erb :login
+  end
+
   post '/login' do
-    # connection = PG.connect :dbname => "makersbnb_#{ENV['RACK_ENV']}"
-    # result = connection.exec("SELECT * FROM users WHERE email = '#{params[:email]}'")
-    # user = User.new(result[0]['id'], result[0]['username'], result[0]['email'], result[0]['password'], result[0]['password'])
-    session[:user_id] = user.user_id.to_i
-    redirec('/spaces')
+    @user = User.authenticate(params[:email], params[:password])
+    redirect '/spaces'
   end
 
   post '/signup' do
@@ -35,7 +27,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/spaces' do
-    @name = User.current.name # this can't retrive a loged in user at the moment
+    @name = User.current.name if User.current != nil# this can't retrive a loged in user at the moment
     @listings = Listing.all
     erb :spaces
   end
@@ -47,6 +39,11 @@ class MakersBnB < Sinatra::Base
   post '/spaces/new' do
     @user_id = User.current.user_id.first[:id]
     Listing.create(params[:title], params[:description], @user_id.to_i)
+    redirect '/spaces'
+  end
+
+  post '/session/destroy' do
+    User.logout
     redirect '/spaces'
   end
 

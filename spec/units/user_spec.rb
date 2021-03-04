@@ -41,4 +41,13 @@ describe User do
     end
   end
 
+  describe '.logout' do
+    it 'logs out the current user' do
+      user = User.create('Sandy', 'sandy@gmail.com', '1234', '1234')
+      User.logout
+
+      expect(User.current).to be nil
+    end
+  end
+
 end
