@@ -20,12 +20,14 @@ feature 'book a space' do
     expect(page).to have_content('You have booked Space 1!')
   end
 
-  # scenario 'space removed from listings view' do
-  #   sign_up
-  #   visit '/spaces'
-  #   click_button('book space 1')
-  #   click_link('View more spaces // go back to home page')
-  #
-  #   expect(page).not_to have_content('space 1')
-  # end
+  scenario 'space removed from listings view' do
+    Listing.create('Space 1', 'test', 1)
+    sign_up
+    visit '/spaces'
+    click_button('book Space 1')
+    click_link('View more spaces // go back to home page')
+  
+    expect(page).not_to have_content('Space 1')
+  end
+
 end
