@@ -32,12 +32,13 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/spaces/new' do
-    @user_id = User.current.user_id.first[:id]
+    @user_id = User.current.user_id
     Listing.create(params[:title], params[:description], @user_id.to_i)
     redirect '/spaces'
   end
 
-  get '/confirmation' do
+  post '/confirmation/:id' do
+    @title = Listing.book(params[:id], User.current.user_id)
     erb :confirmation
   end
 

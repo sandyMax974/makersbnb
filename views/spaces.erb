@@ -7,7 +7,7 @@
 <ul>
   <% @listings.each do |listing| %>
   <li> <%= listing.title %>
-    <form action="/confirmation" method="get">
+    <form action="/confirmation/<%= listing.id %>" method="post">
       <input type="submit" value="book <%= listing.title %>">
     </form>
     <%= listing.description %>
