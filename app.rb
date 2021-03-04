@@ -9,12 +9,16 @@ class MakersBnB < Sinatra::Base
   enable :sessions
 
   get '/' do
-    erb :index
+    "Log in / Sign up (directs to /signup/new)"
   end
 
-  # get '/confirmation' do
-  #   erb :confirmation
-  # end
+  get '/login' do
+    "Login form"
+  end
+
+  get '/signup/new' do
+    erb :user
+  end
 
   post '/signup' do
     @user = User.create( params[:username], params[:email], params[:password], params[:confirm_password])
