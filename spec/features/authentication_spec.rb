@@ -8,7 +8,7 @@ feature 'Authentication' do
     click_button('Sign in')
     expect(page).to have_content("Hello Sandy974")
   end
-  
+
   scenario 'A user can sign out' do
     User.create('Sandy974','sandy@gmail.com','1234', '1234')
 
