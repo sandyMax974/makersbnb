@@ -3,17 +3,67 @@
   <link rel="stylesheet" href="style.css">
 </header>
 
-<h1>MakersBnB<h1>
+<body>
+<div class=fixed_header>
+  <div class=header-grid>
+    <div></div>
+    <div class=header-text><b>MakersBnB<b>
+    </div>
 
-<h2>Hello <%= @name %><h2>
+      <div class=signin-text><b>
+        <% if !User.logged? %>
+        <a href='/login'>Sign In<b></a>
+        <%else%>
+          <a href="/session/destroy">Sign Out</a>
+        <%end%>
+      </div>
 
+  </div>
+</div>
+
+<br>
 <% if User.logged? %>
   <form action="/spaces/new" method="get">
     <input type="submit" value="Add listing">
   </form>
 <%end%>
 
-<% if !User.logged? %>
+<div class=column>
+
+<h1>Listings</h1>
+  <a href='/' ><div class=listing>
+    <b><%= listing.title %>
+      <b>
+        <br>
+        <br>
+        <%= listing.description %>
+        <p class=price>£50 per night</p>
+      </div></a>
+</body>
+
+<div class="">
+  <% @listings.each do |listing| %>
+    <%= listing.title %>
+    <% if !User.logged? %>
+    <form action="/confirmation/<%= listing.id %>" method="post">
+      <input type="submit" value="book <%= listing.title %>">
+    </form> <%end%>
+    <%= listing.description %>
+  <% end %>
+</div>
+
+
+<h1>MakersBnB<h1>
+
+<h2>Hello <%= @name %><h2>
+
+<%# <% if User.logged? %>
+  <form action="/spaces/new" method="get">
+    <input type="submit" value="Add listing">
+  </form>
+<%end%> %>
+
+<%# <% if !User.logged? %>
   <form class="" action="/login" method="get">
     <input type="submit" value="Log in">
   </form>
@@ -23,7 +73,7 @@
   <form class="" action="/session/destroy" method="post">
     <input type="submit" value="Signout">
   </form>
-<%end%>
+<%end%> %>
 
 <p>Listings</p>
 
