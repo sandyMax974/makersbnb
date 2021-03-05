@@ -36,5 +36,4 @@ describe Listing do
       expect(Listing.all).to eq []
     end
   end
-
 end

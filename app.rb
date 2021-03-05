@@ -50,7 +50,7 @@ class MakersBnB < Sinatra::Base
   post '/confirmation/:id' do
     @title = Listing.book(params[:id], User.current.user_id)
     erb :confirmation
-    end
+  end
 
   post '/session/destroy' do
     User.logout

@@ -16,12 +16,12 @@ class Listing
   end
 
   def self.all
-    results = query("SELECT * FROM listings WHERE renter_id ISNULL;") # this is a hash
+    results = query('SELECT * FROM listings WHERE renter_id ISNULL;') # this is a hash
     results.map { |listing| Listing.new(listing) } # this is an array w/ symbols
   end
 
   def self.reserved
-    results = query("SELECT * FROM listings WHERE renter_id IS NOT NULL;") # this is a hash
+    results = query('SELECT * FROM listings WHERE renter_id IS NOT NULL;') # this is a hash
     results.map { |listing| Listing.new(listing) } # this is an array w/ symbols
   end
 
@@ -35,5 +35,4 @@ class Listing
     @user_id = user_id.to_i
     query("UPDATE listings SET renter_id = #{@user_id} WHERE id = #{space_id} RETURNING title;").last[:title] # this is a hash
   end
-
 end

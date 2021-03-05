@@ -28,8 +28,7 @@ feature 'book a space' do
     visit '/spaces'
     click_button('book Space 1')
     click_link('View more spaces // go back to home page')
-  
+
     expect(page).not_to have_content('Space 1')
   end
-
 end
