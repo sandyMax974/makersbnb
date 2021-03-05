@@ -1,18 +1,18 @@
 <header>
   <title>MakersBnB / Home</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" type="text/css">
 </header>
 
 <body>
 <div class=fixed_header>
   <div class=header-grid>
     <div></div>
-    <div class=header-text><b>MakersBnB<b>
-    </div>
+    <div class=header-text><b>MakersBnB<b></div>
+
 
       <div class=signin-text><b>
         <% if !User.logged? %>
-        <a href='/login'>Sign In<b></a>
+          <a href='/login'>Sign In<b></a>
         <%else%>
           <a href="/session/destroy">Sign Out</a>
         <%end%>
@@ -20,6 +20,8 @@
 
   </div>
 </div>
+
+<h2>Hello <%= @name %><h2>
 
 <br>
 <% if User.logged? %>
@@ -29,62 +31,19 @@
 <%end%>
 
 <div class=column>
-
-<h1>Listings</h1>
-  <a href='/' ><div class=listing>
-    <b><%= listing.title %>
-      <b>
-        <br>
-        <br>
-        <%= listing.description %>
-        <p class=price>£50 per night</p>
-      </div></a>
-</body>
-
-<div class="">
+  <h2>Listings</h2>
+  <div class="listing">
   <% @listings.each do |listing| %>
     <%= listing.title %>
+    <%= listing.description %>
     <% if !User.logged? %>
     <form action="/confirmation/<%= listing.id %>" method="post">
-      <input type="submit" value="book <%= listing.title %>">
-    </form> <%end%>
-    <%= listing.description %>
+      <div class="price">
+        <input type="submit" value="Book">
+      </div>
+    </form>
+    <%end%>
   <% end %>
+  </div>
 </div>
-
-
-<h1>MakersBnB<h1>
-
-<h2>Hello <%= @name %><h2>
-
-<%# <% if User.logged? %>
-  <form action="/spaces/new" method="get">
-    <input type="submit" value="Add listing">
-  </form>
-<%end%> %>
-
-<%# <% if !User.logged? %>
-  <form class="" action="/login" method="get">
-    <input type="submit" value="Log in">
-  </form>
-<%end%>
-
-<% if User.logged? %>
-  <form class="" action="/session/destroy" method="post">
-    <input type="submit" value="Signout">
-  </form>
-<%end%> %>
-
-<p>Listings</p>
-
-<ul>
-  <% @listings.each do |listing| %>
-  <li> <%= listing.title %>
-    <% if !User.logged? %>
-    <form action="/confirmation/<%= listing.id %>" method="post">
-      <input type="submit" value="book <%= listing.title %>">
-    </form> <%end%>
-    <%= listing.description %>
-  </li>
-  <% end %>
-</ul>
+</body>
