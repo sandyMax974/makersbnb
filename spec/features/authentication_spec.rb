@@ -18,7 +18,7 @@ feature 'Authentication' do
     click_button('Sign in')
     expect(page).to have_content("Hello Sandy974")
 
-    click_button('Signout')
+    click_button('Sign Out')
 
     expect(page).to_not have_content("Hello Sandy974")
   end
