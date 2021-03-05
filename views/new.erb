@@ -1,11 +1,31 @@
-<form action= '/spaces/new' method="post">
+<header>
+  <title>MakersBnB / Add a Listing</title>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</header>
+<body>
+<div class=fixed_header>
+  <div class=header-grid>
+    <div></div>
+    <div class=header-text><b>MakersBnB<b></div>
+    <div class=signin-text><b>
+      <% if !User.logged? %>
+        <a href='/login'>Sign In<b></a>
+      <%else%>
+        <a href="/session/destroy">Sign Out</a>
+      <%end%>
+    </div>
+  </div>
+</div>
 
-  <input type=text name="title" placeholder="Title">
-  <input type=text name="description" placeholder="Enter a description">
-
-  <input type="date" id="start" name="trip_start"
-         value="2021-03-05"
-         min="2021-03-05" max="2022-03-05">
-  <input type="submit" value="Add listing">
-
-</form>
+<div class=column>
+  <h2>Add a Listing</h2>
+  <form action= '/spaces/new' method="post">
+    <div class=item><input type=text name="title" placeholder="Title"></div>
+    <div class=item><input type=text name="description" placeholder="Enter a description"></div>
+    <div class=item>   <input type="date" id="start" name="trip_start"
+             value="2021-03-05"
+             min="2021-03-05" max="2022-03-05"> </div>
+    <div class=item><input type="submit" value="Add listing"></div>
+  </form>
+</div>
+</body>

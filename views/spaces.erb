@@ -1,35 +1,64 @@
-<h1>MakersBnB<h1>
+<header>
+  <title>MakersBnB / Home</title>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</header>
+
+<script type="text/javascript">
+   function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+   }
+</script>
+
+<body>
+<div class=fixed_header>
+  <div class=header-grid>
+    <div></div>
+    <div class=header-text><b>MakersBnB<b></div>
+
+      <div class=signin-text><b>
+        <% if !User.logged? %>
+          <a href='/login'>Sign In<b></a>
+        <%else%>
+          <a href="/session/destroy">Sign Out</a>
+        <%end%>
+      </div>
+
+  </div>
+</div>
 
 <h2>Hello <%= @name %><h2>
 
+<br>
 <% if User.logged? %>
   <form action="/spaces/new" method="get">
     <input type="submit" value="Add listing">
   </form>
 <%end%>
 
-<% if !User.logged? %>
-  <form class="" action="/login" method="get">
-    <input type="submit" value="Log in">
-  </form>
-<%end%>
+<div class=column>
+  <h2>Listings</h2>
 
-<% if User.logged? %>
-  <form class="" action="/session/destroy" method="post">
-    <input type="submit" value="Signout">
-  </form>
-<%end%>
 
-<p>Listings</p>
-
-<ul>
   <% @listings.each do |listing| %>
-  <li> <%= listing.title %>
+  <div class="listing">
+    <%= listing.title %>
+    <p><%= listing.description %></p>
+    <p onclick="toggle_visibility('<%= listing.id %>');">Click to see on a map</>
+    <div id="<%= listing.id %>" style="display:none"><iframe width='300px' height='300px' id='mapcanvas' src='https://maps.google.com/maps?q=<%= @address %>&amp;t=&amp;z=10&amp;ie=UTF8&amp;iwloc=&amp;output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>
+</div>
     <% if User.logged? %>
-    <form action="/confirmation/<%= listing.id %>" method="post">
-      <input type="submit" value="book <%= listing.title %> for <%= listing.booking_date %> ">
-    </form> <%end%>
-    <%= listing.description %>
-  </li>
+      <div class="price">
+        <form action="/confirmation/<%= listing.id %>" method="post">
+            <input type="submit" value="book <%= listing.title %> for <%= listing.booking_date %> ">
+        </form>
+      </div>
+    <% end %>
+  </div>
   <% end %>
-</ul>
+
+</div>
+</body>

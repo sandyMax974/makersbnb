@@ -1,11 +1,39 @@
+<header>
+  <title>MakersBnB</title>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</header>
+
+<body>
+<div class=fixed_header>
+  <div class=header-grid>
+    <div></div>
+    <div class=header-text><b>MakersBnB<b></div>
+    <div class=signin-text><b>
+      <% if !User.logged? %>
+        <a href='/login'>Sign In<b></a>
+      <%else%>
+        <a href="/session/destroy">Sign Out</a>
+      <%end%>
+    </div>
+  </div>
+</div>
+
 <h1> Welcome to MakersBnB </h1>
 
-<a href="/login">Login</a>
-
+<div class=column>
+<h2>Sign up here</h2>
 <form action= '/signup' method="post">
-  <input type=text name="username" placeholder="Enter username">
-  <input type=text name="email" placeholder="Enter email">
-  <input type=password name="password" placeholder="Enter password">
-  <input type=password name="confirm_password" placeholder="Re-enter password">
-  <input type="submit" value="Submit">
+  <div class=item><input type=text name="username" placeholder="Enter username"></div>
+  <div class=item><input type=text name="email" placeholder="Enter email"></div>
+  <div class=item><input type=password name="password" placeholder="Enter password"></div>
+  <div class=item><input type=password name="confirm_password" placeholder="Re-enter password"></div>
+  <div class=item><input type="submit" value="Submit"></div>
 </form>
+</div>
+</body>
+
+
+
+
+
+
