@@ -11,23 +11,23 @@ class Listing
     @renter_id = input_hash[:renter_id]
   end
 
-  def self.listing_to_a(results)
+  def self.listing_to_array(results)
     results.map { |listing| Listing.new(listing) }
   end
 
   def self.create(title, description, creator_id)
     results = query("INSERT INTO listings (title, description, creator_id) VALUES('#{title}', '#{description}','#{creator_id}') RETURNING id, title, description, creator_id;")
-    listing_to_a(results)
+    listing_to_array(results)
   end
 
   def self.all
     results = query('SELECT * FROM listings WHERE renter_id ISNULL;') # this is a hash
-    listing_to_a(results) # this is an array w/ symbols
+    listing_to_array(results) # this is an array w/ symbols
   end
 
   def self.reserved
     results = query('SELECT * FROM listings WHERE renter_id IS NOT NULL;') # this is a hash
-    listing_to_a(results) # this is an array w/ symbols
+    listing_to_array(results) # this is an array w/ symbols
   end
 
   def self.book(space_id, user_id)
