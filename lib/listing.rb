@@ -17,7 +17,7 @@ class Listing
   end
 
   def self.create(title, description, creator_id, booking_date)
-    insertion = query("INSERT INTO listings (title, description, creator_id, booking_date) VALUES('#{title}', '#{description}','#{creator_id}', '#{booking_date}') RETURNING id, title, description, creator_id, booking_date;")
+    results = query("INSERT INTO listings (title, description, creator_id, booking_date) VALUES('#{title}', '#{description}','#{creator_id}', '#{booking_date}') RETURNING id, title, description, creator_id, booking_date;")
     listing_to_array(results)
   end
 
