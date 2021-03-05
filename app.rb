@@ -39,7 +39,7 @@ class MakersBnB < Sinatra::Base
 
   post '/spaces/new' do
     @user_id = User.current.user_id
-    Listing.create(params[:title], params[:description], @user_id.to_i)
+    Listing.create(params[:title], params[:description], @user_id.to_i, params[:trip_start])
     redirect '/spaces'
   end
 

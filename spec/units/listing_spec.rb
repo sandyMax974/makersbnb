@@ -3,8 +3,8 @@
 require 'listing'
 
 describe Listing do
-  let(:listing_1) { Listing.create('Sea Cottage', 'Perfect for families', 23) }
-  let(:listing_2) { Listing.create('Holiday house', 'Lovely holiday location', 23) }
+  let(:listing_1) { Listing.create('Sea Cottage', 'Perfect for families', 23, '2021-03-05') }
+  let(:listing_2) { Listing.create('Holiday house', 'Lovely holiday location', 23, '2021-03-06') }
 
   describe '.create' do
     it 'should create a new listing with an id, title, description and creator_id' do
@@ -12,6 +12,7 @@ describe Listing do
       expect(listing_1.first.title).to eq 'Sea Cottage'
       expect(listing_1.first.description).to eq 'Perfect for families'
       expect(listing_1.first.creator_id).to eq '23'
+      expect(listing_1.first.booking_date).to eq '2021-03-05'
     end
   end
 
@@ -26,16 +27,17 @@ describe Listing do
 
       expect(listings[0].title).to eq 'Sea Cottage'
       expect(listings[0].description).to eq 'Perfect for families'
+      expect(listings[0].booking_date).to eq '2021-03-05'
 
       expect(listings[1].title).to eq 'Holiday house'
       expect(listings[1].description).to eq 'Lovely holiday location'
+        expect(listings[1].booking_date).to eq '2021-03-06'
     end
   end
 
   describe '.book' do
     it 'should add listing to .reserved when booked' do
       Listing.book(listing_1[0].id, 1)
-
       expect(Listing.reserved[0].renter_id).to eq '1'
       expect(Listing.all).to eq []
     end
