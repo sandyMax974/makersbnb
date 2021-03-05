@@ -35,6 +35,7 @@ describe Listing do
   describe '.book' do
     it 'should add listing to .reserved when booked' do
       Listing.book(listing_1[0].id, 1)
+
       expect(Listing.reserved[0].renter_id).to eq '1'
       expect(Listing.all).to eq []
     end

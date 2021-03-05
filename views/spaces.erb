@@ -8,7 +8,7 @@
   </form>
 <%end%>
 
-<% if User.logged? %>
+<% if !User.logged? %>
   <form class="" action="/login" method="get">
     <input type="submit" value="Log in">
   </form>
