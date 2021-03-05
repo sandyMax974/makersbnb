@@ -12,8 +12,6 @@ require 'simplecov-console'
 
 Capybara.app = MakersBnB
 
-ENV['ENVIRONMENT'] = 'test'
-
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
                                                                  SimpleCov::Formatter::Console
 

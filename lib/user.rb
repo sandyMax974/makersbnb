@@ -42,9 +42,11 @@ class User
     @current = nil
   end
 
-  def self.query(query_string)
-    @dbname = ENV['ENVIRONMENT'] == 'test' ? 'makersbnb_test' : 'makersbnb_development'
-    results = PG.connect(dbname: @dbname).exec(query_string)
+  private
+
+  def self.query(sql)
+    connection = PG.connect dbname: "makersbnb_#{ENV['RACK_ENV']}"
+    results = connection.exec(sql)
     results.map { |result| result.transform_keys(&:to_sym) }
   end
 end
