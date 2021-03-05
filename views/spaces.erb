@@ -3,6 +3,16 @@
   <link rel="stylesheet" href="/style.css" type="text/css">
 </header>
 
+<script type="text/javascript">
+   function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+   }
+</script>
+
 <body>
 <div class=fixed_header>
   <div class=header-grid>
@@ -37,7 +47,9 @@
   <div class="listing">
     <%= listing.title %>
     <p><%= listing.description %></p>
-
+    <p onclick="toggle_visibility('<%= listing.id %>');">Click to see on a map</>
+    <div id="<%= listing.id %>" style="display:none"><iframe width='300px' height='300px' id='mapcanvas' src='https://maps.google.com/maps?q=<%= @address %>&amp;t=&amp;z=10&amp;ie=UTF8&amp;iwloc=&amp;output=embed' frameborder='0' scrolling='no' marginheight='0' marginwidth='0'></iframe>
+</div>
     <% if User.logged? %>
       <div class="price">
         <form action="/confirmation/<%= listing.id %>" method="post">
