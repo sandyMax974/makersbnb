@@ -1,4 +1,28 @@
-You have booked <%= @title %>!
+<header>
+  <title>MakersBnB / Confirmation</title>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</header>
+
+<body>
+<div class=fixed_header>
+  <div class=header-grid>
+    <div></div>
+    <div class=header-text><b>MakersBnB<b></div>
+    
+      <div class=signin-text><b>
+        <% if !User.logged? %>
+          <a href='/login'>Sign In<b></a>
+        <%else%>
+          <a href="/session/destroy">Sign Out</a>
+        <%end%>
+      </div>
+
+  </div>
+</div>
+
+<h1>You have booked <%= @title %>!</h1>
 <br>
 <br>
 <a href="/spaces">View more spaces // go back to home page</a> or close this page if you're done booking!
+
+</body>

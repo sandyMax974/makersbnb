@@ -1,6 +1,6 @@
 <header>
   <title>MakersBnB / Home</title>
-  <link rel="stylesheet" href="style.css" type="text/css">
+  <link rel="stylesheet" href="/style.css" type="text/css">
 </header>
 
 <body>
@@ -8,8 +8,7 @@
   <div class=header-grid>
     <div></div>
     <div class=header-text><b>MakersBnB<b></div>
-
-
+    
       <div class=signin-text><b>
         <% if !User.logged? %>
           <a href='/login'>Sign In<b></a>
@@ -39,7 +38,7 @@
     <%= listing.title %>
     <p><%= listing.description %></p>
 
-    <% if !User.logged? %>
+    <% if User.logged? %>
       <div class="price">
         <form action="/confirmation/<%= listing.id %>" method="post">
             <input type="submit" value="Book">

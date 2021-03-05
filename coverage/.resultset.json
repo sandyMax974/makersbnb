@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/JaiJk/Projects/makers-academy/makersbnb/spec/features/add_listing_spec.rb": {
+      "/Users/peterallen/Documents/Makers/Week_5/makersbnb/spec/features/add_listing_spec.rb": {
         "lines": [
           null,
           null,
@@ -20,7 +20,7 @@
           null
         ]
       },
-      "/Users/JaiJk/Projects/makers-academy/makersbnb/spec/features/sign_up_helper.rb": {
+      "/Users/peterallen/Documents/Makers/Week_5/makersbnb/spec/features/sign_up_helper.rb": {
         "lines": [
           null,
           null,
@@ -35,7 +35,7 @@
           null
         ]
       },
-      "/Users/JaiJk/Projects/makers-academy/makersbnb/spec/features/authentication_spec.rb": {
+      "/Users/peterallen/Documents/Makers/Week_5/makersbnb/spec/features/authentication_spec.rb": {
         "lines": [
           1,
           1,
@@ -59,12 +59,12 @@
           null,
           1,
           null,
-          1,
+          0,
           null,
           null
         ]
       },
-      "/Users/JaiJk/Projects/makers-academy/makersbnb/spec/features/book_space_spec.rb": {
+      "/Users/peterallen/Documents/Makers/Week_5/makersbnb/spec/features/book_space_spec.rb": {
         "lines": [
           null,
           null,
@@ -103,7 +103,7 @@
           null
         ]
       },
-      "/Users/JaiJk/Projects/makers-academy/makersbnb/spec/features/browse_listings_spec.rb": {
+      "/Users/peterallen/Documents/Makers/Week_5/makersbnb/spec/features/browse_listings_spec.rb": {
         "lines": [
           null,
           null,
@@ -122,7 +122,7 @@
           null
         ]
       },
-      "/Users/JaiJk/Projects/makers-academy/makersbnb/spec/features/sign_up_spec.rb": {
+      "/Users/peterallen/Documents/Makers/Week_5/makersbnb/spec/features/sign_up_spec.rb": {
         "lines": [
           null,
           null,
@@ -137,7 +137,7 @@
           null
         ]
       },
-      "/Users/JaiJk/Projects/makers-academy/makersbnb/spec/units/listing_spec.rb": {
+      "/Users/peterallen/Documents/Makers/Week_5/makersbnb/spec/units/listing_spec.rb": {
         "lines": [
           null,
           null,
@@ -181,7 +181,7 @@
           null
         ]
       },
-      "/Users/JaiJk/Projects/makers-academy/makersbnb/spec/units/user_spec.rb": {
+      "/Users/peterallen/Documents/Makers/Week_5/makersbnb/spec/units/user_spec.rb": {
         "lines": [
           1,
           null,
@@ -247,10 +247,6 @@
         ]
       }
     },
-<<<<<<< HEAD
-    "timestamp": 1614942973
-=======
-    "timestamp": 1614940916
->>>>>>> 2753683f027f833858d16365abf7247e7c8cd6d4
+    "timestamp": 1614949690
   }
 }
