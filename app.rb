@@ -3,7 +3,7 @@
 require 'sinatra'
 require './lib/listing'
 require 'pg'
-require_relative './lib/user'
+require './lib/user'
 
 class MakersBnB < Sinatra::Base
   enable :sessions

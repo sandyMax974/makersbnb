@@ -6,6 +6,10 @@ require 'bcrypt'
 class User
   attr_reader :user_id, :name, :email, :password
 
+  class << self
+    attr_reader :current
+  end
+
   def initialize(user_id, name, email, password, confirm_password)
     @user_id = user_id
     @name = name
@@ -32,10 +36,6 @@ class User
 
   def self.logged?
     @current != nil
-  end
-
-  class << self
-    attr_reader :current
   end
 
   def self.logout

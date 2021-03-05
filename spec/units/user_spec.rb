@@ -48,7 +48,7 @@ describe User do
   end
 
   describe '.logout' do
-    it 'logs out the current user' do
+    it 'logs current user out' do
       User.logout
       expect(User.current).to be nil
     end
