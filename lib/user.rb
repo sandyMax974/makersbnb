@@ -6,6 +6,10 @@ require 'bcrypt'
 class User
   attr_reader :user_id, :name, :email, :password
 
+  class << self
+    attr_reader :current
+  end
+
   def initialize(user_id, name, email, password, confirm_password)
     @user_id = user_id
     @name = name
@@ -21,19 +25,17 @@ class User
     @current = User.new(user_id[0][:id], name, email, password, confirm_password)
   end
 
-  def self.authenticate(email, password)
+  def self.validate(email, password)
     result = query("SELECT * FROM users WHERE email = '#{email}'")
     return unless result.any?
     return unless result[0][:password] == password
-    @current = User.new(result[0][:id], result[0][:username], result[0][:email], result[0][:password], result[0][:password])
+
+    @current = User.new(result[0][:id], result[0][:username], result[0][:email], result[0][:password],
+                        result[0][:password])
   end
 
   def self.logged?
     @current != nil
-  end
-
-  class << self
-    attr_reader :current
   end
 
   def self.logout

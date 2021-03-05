@@ -3,7 +3,7 @@
 require 'sinatra'
 require './lib/listing'
 require 'pg'
-require_relative './lib/user'
+require './lib/user'
 
 class MakersBnB < Sinatra::Base
   enable :sessions
@@ -17,7 +17,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/login' do
-    @user = User.authenticate(params[:email], params[:password])
+    @user = User.validate(params[:email], params[:password])
     redirect '/spaces' if User.logged?
     redirect '/login'
   end
@@ -50,7 +50,7 @@ class MakersBnB < Sinatra::Base
   post '/confirmation/:id' do
     @title = Listing.book(params[:id], User.current.user_id)
     erb :confirmation
-    end
+  end
 
   post '/session/destroy' do
     User.logout
