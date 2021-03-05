@@ -11,19 +11,23 @@ class Listing
     @renter_id = input_hash[:renter_id]
   end
 
+  def self.listing_to_a(results)
+    results.map { |listing| Listing.new(listing) }
+  end
+
   def self.create(title, description, creator_id)
-    insertion = query("INSERT INTO listings (title, description, creator_id) VALUES('#{title}', '#{description}','#{creator_id}') RETURNING id, title, description, creator_id;")
-    insertion.map { |listing| Listing.new(listing) }
+    results = query("INSERT INTO listings (title, description, creator_id) VALUES('#{title}', '#{description}','#{creator_id}') RETURNING id, title, description, creator_id;")
+    listing_to_a(results)
   end
 
   def self.all
     results = query('SELECT * FROM listings WHERE renter_id ISNULL;') # this is a hash
-    results.map { |listing| Listing.new(listing) } # this is an array w/ symbols
+    listing_to_a(results) # this is an array w/ symbols
   end
 
   def self.reserved
     results = query('SELECT * FROM listings WHERE renter_id IS NOT NULL;') # this is a hash
-    results.map { |listing| Listing.new(listing) } # this is an array w/ symbols
+    listing_to_a(results) # this is an array w/ symbols
   end
 
   def self.book(space_id, user_id)
@@ -32,7 +36,7 @@ class Listing
   end
 
   private
-  
+
   def self.query(sql)
     connection = PG.connect dbname: "makersbnb_#{ENV['RACK_ENV']}"
     results = connection.exec(sql)
