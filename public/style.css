@@ -1,0 +1,63 @@
+.fixed_header {
+  font-size:50px;
+  width:100%;
+  height:100px;
+  background-color:#328a7d;
+}
+
+.header-grid {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+}
+
+.header-text {
+  margin:20px;
+}
+
+.signin-text {
+  font-size:20px;
+  margin:37px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+body {
+  background-color:#7ec2ad;
+  font-family: Helvetica, sans-serif;
+  margin:0;
+  color:white;
+  text-align:center;
+}
+
+.column {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.item {
+  margin:10px;
+}
+
+.listing {
+  display: grid;
+  grid-template-columns: auto, auto;
+  border-style: solid;
+  border-width: 1px;
+  border-color: white;
+  margin: 0 auto;
+  padding:20px;
+  width:50%;
+  text-align:left;
+}
+
+.price {
+    text-align:right;
+}
+
+p {
+  font-size:medium;
+  font-weight:normal;
+}
