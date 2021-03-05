@@ -17,7 +17,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/login' do
-    @user = User.authenticate(params[:email], params[:password])
+    @user = User.validate(params[:email], params[:password])
     redirect '/spaces' if User.logged?
     redirect '/login'
   end

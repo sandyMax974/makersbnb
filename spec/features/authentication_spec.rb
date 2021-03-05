@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-feature 'Authentication' do
+feature 'Validation' do
   scenario 'A user can sign in' do
     User.create('Sandy974', 'sandy@gmail.com', '1234', '1234')
 

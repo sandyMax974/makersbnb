@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class Listing
-  attr_reader :id, :title, :description, :creator_id
+  attr_reader :id, :title, :description, :creator_id, :renter_id
 
   def initialize(input_hash)
     @id = input_hash[:id]
     @title = input_hash[:title]
     @description = input_hash[:description]
     @creator_id = input_hash[:creator_id]
+    @renter_id = input_hash[:renter_id]
   end
 
   def self.create(title, description, creator_id)

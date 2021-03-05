@@ -2,7 +2,7 @@
 
 <h2>Hello <%= @name %><h2>
 
-<% if !User.logged? %>
+<% if User.logged? %>
   <form action="/spaces/new" method="get">
     <input type="submit" value="Add listing">
   </form>
@@ -14,7 +14,7 @@
   </form>
 <%end%>
 
-<% if !User.logged? %>
+<% if User.logged? %>
   <form class="" action="/session/destroy" method="post">
     <input type="submit" value="Signout">
   </form>
@@ -25,7 +25,7 @@
 <ul>
   <% @listings.each do |listing| %>
   <li> <%= listing.title %>
-    <% if !User.logged? %>
+    <% if User.logged? %>
     <form action="/confirmation/<%= listing.id %>" method="post">
       <input type="submit" value="book <%= listing.title %>">
     </form> <%end%>
