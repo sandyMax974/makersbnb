@@ -27,7 +27,7 @@
   <li> <%= listing.title %>
     <% if User.logged? %>
     <form action="/confirmation/<%= listing.id %>" method="post">
-      <input type="submit" value="book <%= listing.title %>">
+      <input type="submit" value="book <%= listing.title %> for <%= listing.booking_date %> ">
     </form> <%end%>
     <%= listing.description %>
   </li>

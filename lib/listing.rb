@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Listing
-  attr_reader :id, :title, :description, :creator_id, :renter_id
+  attr_reader :id, :title, :description, :creator_id, :renter_id, :booking_date
 
   def initialize(input_hash)
     @id = input_hash[:id]
@@ -9,10 +9,11 @@ class Listing
     @description = input_hash[:description]
     @creator_id = input_hash[:creator_id]
     @renter_id = input_hash[:renter_id]
+    @booking_date = input_hash[:booking_date]
   end
 
-  def self.create(title, description, creator_id)
-    insertion = query("INSERT INTO listings (title, description, creator_id) VALUES('#{title}', '#{description}','#{creator_id}') RETURNING id, title, description, creator_id;")
+  def self.create(title, description, creator_id, booking_date)
+    insertion = query("INSERT INTO listings (title, description, creator_id, booking_date) VALUES('#{title}', '#{description}','#{creator_id}', '#{booking_date}') RETURNING id, title, description, creator_id, booking_date;")
     insertion.map { |listing| Listing.new(listing) }
   end
 
