@@ -21,7 +21,7 @@ class User
     @current = User.new(user_id[0][:id], name, email, password, confirm_password)
   end
 
-  def self.authenticate(email, password)
+  def self.validate(email, password)
     result = query("SELECT * FROM users WHERE email = '#{email}'")
     return unless result.any?
     return unless result[0][:password] == password

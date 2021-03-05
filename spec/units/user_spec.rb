@@ -31,20 +31,19 @@ describe User do
     end
   end
 
-  describe '.authenticate' do
+  describe '.validate' do
     it 'returns a given user for a correct password and email, if one exists' do
-      authenticated_user = user.authenticate('pete@example.com', '1234')
-      p authenticated_user
-      expect(authenticated_user.user_id).to eq User.user_id
+      validated_user = User.validate('pete@example.com', '1234')
+      p validated_user
+      expect(validated_user.user_id).to eq User.user_id
     end
 
     it 'returns nil if an incorrect email is suppplied' do
-      new =
-      expect(user.authenticate('incorrect@gmail.com', '1234')).to be_nil
+      expect(User.validate('incorrect@gmail.com', '1234')).to be_nil
     end
 
     it 'returns nil if an incorrect password is suppplied' do
-      expect(User.authenticate('pete@example.com', 'wrong')).to be_nil
+      expect(User.validate('pete@example.com', 'wrong')).to be_nil
     end
   end
 
