@@ -12,7 +12,7 @@ feature 'Validation' do
     log_in
     expect(page).to have_content('Hello Sandy974')
 
-    click_button('Signout')
+    click_button('Sign Out')
 
     expect(page).to_not have_content('Hello Sandy974')
   end

@@ -9,7 +9,7 @@ class MakersBnB < Sinatra::Base
   enable :sessions
 
   get '/' do
-    erb :user
+    erb :index
   end
 
   get '/login' do

@@ -23,7 +23,9 @@
         <% if !User.logged? %>
           <a href='/login'>Sign In<b></a>
         <%else%>
-          <a href="/session/destroy">Sign Out</a>
+        <form action="/session/destroy" method="post">
+          <input type="submit" value="Sign Out">
+        </form>
         <%end%>
       </div>
 
