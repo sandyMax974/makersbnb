@@ -31,7 +31,7 @@ describe Listing do
 
       expect(listings[1].title).to eq 'Holiday house'
       expect(listings[1].description).to eq 'Lovely holiday location'
-        expect(listings[1].booking_date).to eq '2021-03-06'
+      expect(listings[1].booking_date).to eq '2021-03-06'
     end
   end
 

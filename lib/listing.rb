@@ -36,8 +36,6 @@ class Listing
     query("UPDATE listings SET renter_id = #{@user_id} WHERE id = #{space_id} RETURNING title;").last[:title] # this is a hash
   end
 
-  private
-
   def self.query(sql)
     connection = PG.connect dbname: "makersbnb_#{ENV['RACK_ENV']}"
     results = connection.exec(sql)

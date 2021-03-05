@@ -42,8 +42,6 @@ class User
     @current = nil
   end
 
-  private
-
   def self.query(sql)
     connection = PG.connect dbname: "makersbnb_#{ENV['RACK_ENV']}"
     results = connection.exec(sql)
