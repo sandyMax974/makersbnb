@@ -34,4 +34,4 @@ Headline specifications
 - Users should be able to offer a range of dates where their space is available.
 - Any signed-up user can request to hire any space for one night, and this should be approved by the user that owns that space.
 
-![makersbnb](/Users/admin/Projects/makers/week_5/makersbnb/images/Screenshot 2021-04-27 at 17.14.18.png)
+![makersbnb](https://github.com/sandyMax974/makersbnb/blob/main/images/Screenshot%202021-04-27%20at%2017.14.18.png)
