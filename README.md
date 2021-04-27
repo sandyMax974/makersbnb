@@ -4,7 +4,7 @@
 This was our first group project and we had to create an AirBnB clone, based on a list of requirements given by stakeholders (Makers' coaches). This aim of the week was to answer 'yes' to the following: 
 > Can you, with only a specification to guide you, work as part of a team to build a web app?
 
-This was difficult as it was the first time we had to break down tasks and assess their sizes as a group, whilst still getting use to building a web-app using Sinatra and REST achitecture.
+This was difficult as it was the first time we had to break down tasks and assess their sizes as a group, whilst still getting use to building a web-app using Sinatra and REST achitecture. It was also our first time using collaborative tool such as PR/branches and merges.
 
 
 ## Installation
@@ -23,7 +23,7 @@ $ bundle exec rspec
 ```
 For a more in-depth view of the coverage report run open coverage/index.html
 
-
+## User Stories
 
 We would like a web application that allows users to list spaces they have available, and to hire spaces for the night.
 
@@ -34,6 +34,4 @@ Headline specifications
 - Users should be able to offer a range of dates where their space is available.
 - Any signed-up user can request to hire any space for one night, and this should be approved by the user that owns that space.
 
-
-## User Stories
-
+![makersbnb](/Users/admin/Projects/makers/week_5/makersbnb/images/Screenshot 2021-04-27 at 17.14.18.png)
