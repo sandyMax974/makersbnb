@@ -23,7 +23,7 @@ $ bundle exec rspec
 ```
 For a more in-depth view of the coverage report run open coverage/index.html
 
-## User Stories
+## Requierements
 
 We would like a web application that allows users to list spaces they have available, and to hire spaces for the night.
 
